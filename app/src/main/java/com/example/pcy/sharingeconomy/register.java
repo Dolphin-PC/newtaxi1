@@ -1,4 +1,4 @@
-package com.example.pcy.newtaxi;
+package com.example.pcy.sharingeconomy;
 
 import android.content.Intent;
 import android.os.Bundle;

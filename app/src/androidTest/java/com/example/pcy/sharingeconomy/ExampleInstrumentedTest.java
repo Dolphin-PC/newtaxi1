@@ -1,4 +1,4 @@
-package com.example.pcy.newtaxi;
+package com.example.pcy.sharingeconomy;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

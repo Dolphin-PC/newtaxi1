@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:804280661254:android:821ebdc4faf0e042",
         "android_client_info": {
-          "package_name": "com.example.pcy.newtaxi"
+          "package_name": "com.example.pcy.sharingeconomy"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "804280661254-ghbdc64njl0fr8nd009lj3d60ii0b0gm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.pcy.newtaxi",
+            "package_name": "com.example.pcy.sharingeconomy",
             "certificate_hash": "050845f48c2fa956e81fcfeff23a2bec27c18204"
           }
         },

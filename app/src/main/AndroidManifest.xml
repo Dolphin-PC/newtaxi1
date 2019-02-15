@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.example.pcy.newtaxi">
+    package="com.example.pcy.sharingeconomy">
 
-<application
-    android:allowBackup="true"
-    android:icon="@drawable/icon"
-    android:label="빨리 매칭해"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
-    <activity
-        android:name=".splashActivity"
-        android:theme="@style/SplashTheme"
-        android:screenOrientation="portrait">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-    <activity android:name=".Login">
-    </activity>
-    <activity
-        android:name=".client"
-        android:label="@string/title_activity_client"
-        android:theme="@style/AppTheme.NoActionBar" />
-    <activity android:name=".My_taxi" />
-    <activity android:name=".post" />
-    <activity android:name=".Data_Post" />
-    <activity android:name=".register" />
-    <activity android:name=".Taxi_info" />
-    <activity android:name=".taxi_main" />
-    <activity
-        android:name=".taxi_driver"
-        android:label="@string/title_activity_taxi_client"
-        android:theme="@style/AppTheme.NoActionBar"></activity>
-</application>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="또인트"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.example.pcy.sharingeconomy.PurchaseActivity"></activity>
+        <activity
+            android:name="com.example.pcy.sharingeconomy.splashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.pcy.sharingeconomy.Login"></activity>
+        <activity
+            android:name="com.example.pcy.sharingeconomy.client"
+            android:label="@string/title_activity_client"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.pcy.sharingeconomy.Data_Post" />
+        <activity android:name="com.example.pcy.sharingeconomy.register" />
+    </application>
 
 </manifest>

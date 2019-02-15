@@ -1,7 +1,6 @@
-package com.example.pcy.newtaxi;
+package com.example.pcy.sharingeconomy;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,10 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -80,6 +77,9 @@ public class client extends AppCompatActivity
                 int i = Integer.parseInt(indexS.split("/")[0]);
                 index = i;
                 updateListView(i);
+                Intent intent = new Intent(getApplicationContext(),PurchaseActivity.class);
+                intent.putExtra("Index",index);
+                startActivity(intent);
             }
         });
 
@@ -209,18 +209,6 @@ public class client extends AppCompatActivity
             finish();
             Intent logoutIntent = new Intent(this, Login.class);
             startActivity(logoutIntent);
-        }
-        else if (id==R.id.nav_reentry){
-            /*Intent intent = new Intent(getApplicationContext(),My_taxi.class);
-            intent.putExtra("Index", index);
-            intent.putExtra("person",person);
-            intent.putExtra("userID",userID);
-            intent.putExtra("title",title);
-            intent.putExtra("start",start);
-            intent.putExtra("arrive",arrive);
-            intent.putExtra("point",point);
-            startActivity(intent);
-            finish();*/
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
