@@ -68,13 +68,6 @@ public class Login extends AppCompatActivity{
                 loginUser(emailText.getText().toString(),pwText.getText().toString());
             }
         });
-        Button GoogleLogin = findViewById(R.id.googleButton);
-        GoogleLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
         Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -101,14 +94,6 @@ public class Login extends AppCompatActivity{
 
             }
         };
-        taxiButton = (TextView)findViewById(R.id.taxiloginButton);
-        taxiButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),taxi_main.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void loginUser(String email, String password){

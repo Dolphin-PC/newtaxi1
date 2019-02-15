@@ -32,7 +32,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-//TODO : 클라이언트 layout 확인/ 재구성 필요
 public class client extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference mDatabase;
@@ -41,9 +40,6 @@ public class client extends AppCompatActivity
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private TextView nameTextView;
     private TextView emailTextView;
-    private TextView pointTextView;
-    private Button addpostButton;
-    private Button refreshButton;
     private Button joinButton;
     private ListView postList;
     private ArrayAdapter adapter;
@@ -59,7 +55,7 @@ public class client extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_tabbar);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.ToolBar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -76,18 +72,6 @@ public class client extends AppCompatActivity
         postList = findViewById(R.id.postListView);
         nameTextView = view.findViewById(R.id.header_name_textView);
         emailTextView = view.findViewById(R.id.header_email_textView);
-        pointTextView = view.findViewById(R.id.header_point_textView);
-        addpostButton = findViewById(R.id.add_post_button);
-        addpostButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),post.class);
-                intent.putExtra("userID", nameTextView.getText().toString());
-                intent.putExtra("index",indexcount);
-                indexcount=1;
-                startActivity(intent);
-            }
-        });
         joinButton = findViewById(R.id.joinButton);
 
         joinButton.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +100,6 @@ public class client extends AppCompatActivity
                 for (DataSnapshot appleSnapshot : dataSnapshot.getChildren()) {
                     User user = appleSnapshot.getValue(User.class);
                     nameTextView.setText(user.getUsername());
-                    pointTextView.setText("Point : " + user.getPoint());
                 }
             }
             @Override
@@ -131,7 +114,7 @@ public class client extends AppCompatActivity
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Data_Post dataPost = dataSnapshot.getValue(Data_Post.class);
-                adapter.add(dataPost.getIndex()+"/"+ dataPost.getTitle() + ": " + dataPost.getStart() + "->" + dataPost.getArrive() + "(" + dataPost.getPerson() + ")명" + ", P("+ dataPost.getPoint()+")");
+                adapter.add(dataPost.getIndex()+"/"+ dataPost.getTitle() + "(" + dataPost.getTime()+")" + ", 가격 : "+ dataPost.getPoint()+"");
                 indexcount++;
             }
 
@@ -143,7 +126,7 @@ public class client extends AppCompatActivity
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 Data_Post dataPost = dataSnapshot.getValue(Data_Post.class);
-                adapter.remove(dataPost.getIndex()+"/"+ dataPost.getTitle() + ": " + dataPost.getStart() + "->" + dataPost.getArrive() + "(" + dataPost.getPerson() + ")명" + ", P("+ dataPost.getPoint()+")");
+                adapter.remove(dataPost.getIndex()+"/"+ dataPost.getTitle() + "(" + dataPost.getTime()+")" + ", 가격 : "+ dataPost.getPoint()+"");
             }
 
             @Override
@@ -167,32 +150,13 @@ public class client extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot nodeDataSnapshot = dataSnapshot.getChildren().iterator().next();
                 Data_Post dataPost = nodeDataSnapshot.getValue(Data_Post.class);
-                person = dataPost.getPerson();
-                if(person<4){
-                    person++;
                     String key = nodeDataSnapshot.getKey(); // this key is `K1NRz9l5PU_0CFDtgXz`
                     String path = "/" + dataSnapshot.getKey() + "/" + key;
                     HashMap<String, Object> result = new HashMap<>();
-                    result.put("person", person);
                     reference.child(path).updateChildren(result);
-                    Intent intent = new Intent(getApplicationContext(),My_taxi.class);
                     userID = nameTextView.getText().toString();
                     title = dataPost.getTitle();
-                    start = dataPost.getStart();
-                    arrive = dataPost.getArrive();
                     point = dataPost.getPoint();
-                    intent.putExtra("Index", i);
-                    intent.putExtra("person",person);
-                    intent.putExtra("userID",userID);
-                    intent.putExtra("title",title);
-                    intent.putExtra("start",start);
-                    intent.putExtra("arrive",arrive);
-                    intent.putExtra("point",point);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    Toast.makeText(getApplicationContext(),"인원 초과",Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override
@@ -247,7 +211,7 @@ public class client extends AppCompatActivity
             startActivity(logoutIntent);
         }
         else if (id==R.id.nav_reentry){
-            Intent intent = new Intent(getApplicationContext(),My_taxi.class);
+            /*Intent intent = new Intent(getApplicationContext(),My_taxi.class);
             intent.putExtra("Index", index);
             intent.putExtra("person",person);
             intent.putExtra("userID",userID);
@@ -256,7 +220,7 @@ public class client extends AppCompatActivity
             intent.putExtra("arrive",arrive);
             intent.putExtra("point",point);
             startActivity(intent);
-            finish();
+            finish();*/
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -266,4 +230,3 @@ public class client extends AppCompatActivity
 
 
 }
-

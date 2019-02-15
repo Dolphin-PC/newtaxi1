@@ -40,7 +40,6 @@ public class register extends AppCompatActivity implements GoogleApiClient.OnCon
         name = findViewById(R.id.nameText);
         password = findViewById(R.id.passwordText);
         email = findViewById(R.id.emailText);
-        phone = findViewById(R.id.phoneText);
         register = findViewById(R.id.regisButton);
 
         mAuth = FirebaseAuth.getInstance();
@@ -64,7 +63,6 @@ public class register extends AppCompatActivity implements GoogleApiClient.OnCon
         final String text1 = name.getText().toString();
         final String text2 = password.getText().toString();
         final String text3 = email.getText().toString();
-        final String text4 = phone.getText().toString();
 
         if (TextUtils.isEmpty(text1)) {
             name.setError("Required");
@@ -78,11 +76,7 @@ public class register extends AppCompatActivity implements GoogleApiClient.OnCon
             email.setError("Required");
             return;
         }
-        if (TextUtils.isEmpty(text4)) {
-            phone.setError("Required");
-            return;
-        }
-        User userData = new User(text1,text2,text3,text4,10000);
+        User userData = new User(text1,text2,text3);
         mDatabase.child("user").push().setValue(userData);
 
     }
